@@ -162,6 +162,7 @@ export default {
     }, 1);
 
     this.$on('$InfiniteLoading:loaded', (ev) => {
+      if (!ev || ev.target !== this) return;
       this.isFirstLoad = false;
 
       if (this.direction === 'top') {
@@ -181,6 +182,7 @@ export default {
     });
 
     this.$on('$InfiniteLoading:complete', (ev) => {
+      if (!ev || ev.target !== this) return;
       this.status = STATUS.COMPLETE;
 
       // force re-complation computed properties to fix the problem of get slot text delay
@@ -196,6 +198,7 @@ export default {
     });
 
     this.$on('$InfiniteLoading:reset', (ev) => {
+      if (!ev || ev.target !== this) return;
       this.status = STATUS.READY;
       this.isFirstLoad = true;
       scrollBarStorage.remove(this.scrollParent);
